@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Downloader for Steam Videos",
+  "version": "2.6.2",
+  "description": "Download videos from Steam store pages with one click",
+  "permissions": [
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://store.steampowered.com/*",
+    "https://*.steamstatic.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://store.steampowered.com/app/*"],
+      "js": ["mp4box.min.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["mp4box.min.js"],
+      "matches": ["https://store.steampowered.com/*"]
+    }
+  ],
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

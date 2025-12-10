@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Downloader for Steam Videos",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "description": "Download videos from Steam store pages with one click",
   "permissions": [
     "offscreen"

@@ -2539,8 +2539,8 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 56px;
-        height: 56px;
+        width: 72px;
+        height: 72px;
         background: linear-gradient(135deg, #1a9fff 0%, #0066cc 100%);
         border-radius: 50%;
         display: flex;
@@ -2556,7 +2556,32 @@
         transform: scale(1.1);
         box-shadow: 0 6px 25px rgba(26, 159, 255, 0.7);
       }
-      #svd-float-btn svg { width: 26px; height: 26px; }
+      #svd-float-btn svg { width: 34px; height: 34px; }
+
+      #svd-float-btn::before,
+      #svd-float-btn::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid rgba(26, 159, 255, 0.6);
+        animation: svd-pulse 2s ease-out infinite;
+        pointer-events: none;
+      }
+      #svd-float-btn::after {
+        animation-delay: 1s;
+      }
+      @keyframes svd-pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(2.2);
+          opacity: 0;
+        }
+      }
 
       .steam-dl-btn {
         display: inline-flex;
@@ -2577,9 +2602,8 @@
 
       #svd-popup {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        bottom: 107px;
+        right: 20px;
         background: #1b2838;
         border-radius: 12px;
         box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
@@ -2717,7 +2741,7 @@
 
       #svd-progress {
         position: fixed;
-        bottom: 90px;
+        bottom: 107px;
         right: 20px;
         background: linear-gradient(135deg, #1b2838 0%, #171d25 100%);
         border: 1px solid #2a475e;

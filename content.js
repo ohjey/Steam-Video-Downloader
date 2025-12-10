@@ -1817,12 +1817,20 @@
       }
     });
 
-    // Get total duration
+    // Get total duration - parse ISO 8601 duration format (e.g., PT1H2M30.5S, PT90S, PT5M)
     const durationAttr = xml.querySelector('MPD').getAttribute('mediaPresentationDuration');
     let totalDuration = 60;
     if (durationAttr) {
-      const match = durationAttr.match(/PT(\d+\.?\d*)S/);
-      if (match) totalDuration = parseFloat(match[1]);
+      const hoursMatch = durationAttr.match(/(\d+\.?\d*)H/);
+      const minutesMatch = durationAttr.match(/(\d+\.?\d*)M/);
+      const secondsMatch = durationAttr.match(/(\d+\.?\d*)S/);
+
+      const hours = hoursMatch ? parseFloat(hoursMatch[1]) : 0;
+      const minutes = minutesMatch ? parseFloat(minutesMatch[1]) : 0;
+      const seconds = secondsMatch ? parseFloat(secondsMatch[1]) : 0;
+
+      const parsedDuration = hours * 3600 + minutes * 60 + seconds;
+      if (parsedDuration > 0) totalDuration = parsedDuration;
     }
 
     return { representations, totalDuration, baseUrl };
